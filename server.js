@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv"
+import mainRouter from './routes/indexRouting.js';
 
 
 dotenv.config();
@@ -32,7 +33,8 @@ const db_pass=process.env.DB_PASS;
 //codes that were copied
 
 const app=express();
-
+app.use (express.json());
+app.use ("/",mainRouter);
 
 const dbUri = `mongodb+srv://${db_user}:${db_pass}@cluster0.el91e.mongodb.net/${db_name}`;
 mongoose.set("strictQuery", false);
